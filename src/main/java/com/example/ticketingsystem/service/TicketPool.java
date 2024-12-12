@@ -3,10 +3,12 @@ package com.example.ticketingsystem.service;
 import com.example.ticketingsystem.models.Configuration;
 import com.example.ticketingsystem.models.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+@Service
 public class TicketPool {
     private final Configuration configuration;
     private final BlockingQueue<Ticket> ticketQueue;
@@ -24,7 +26,7 @@ public class TicketPool {
     }
 
     public synchronized void addTicket(Ticket ticket){
-        if (totalTicketsProduced >= configuration.getTotalTickets()) {
+        if (totalTicketsProduced >= configuration.getTotalTicket()) {
             throw new RuntimeException("All tickets have been added.");
         }
         try {

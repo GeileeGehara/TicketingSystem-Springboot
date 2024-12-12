@@ -6,7 +6,7 @@ import static org.springframework.data.projection.EntityProjection.ProjectionTyp
 
 @Component
 public class Configuration {
-    private int totalTickets = 100;
+    private int totalTicket = 100;
     private int ticketReleaseRate = 2;
     private int customerRetrievalRate = 1;
     private int maximumTicketCapacity = 80;
@@ -14,8 +14,8 @@ public class Configuration {
 
     public Configuration() {}
 
-    public Configuration(int totalTickets, int ticketReleaseRate, int customerRetrievalRate, int maximumTicketCapacity) {
-        this.totalTickets = totalTickets;
+    public Configuration(int totalTicket, int ticketReleaseRate, int customerRetrievalRate, int maximumTicketCapacity) {
+        this.totalTicket = totalTicket;
         this.ticketReleaseRate = ticketReleaseRate;
         this.customerRetrievalRate = customerRetrievalRate;
         this.maximumTicketCapacity = maximumTicketCapacity;
@@ -25,11 +25,11 @@ public class Configuration {
 
 
 
-    public int getTotalTickets() {
-        return totalTickets;
+    public int getTotalTicket() {
+        return totalTicket;
     }
-    public void setTotalTickets(int totalTickets) {
-        this.totalTickets = totalTickets;
+    public void setTotalTicket(int totalTicket) {
+        this.totalTicket = totalTicket;
     }
 
     public int getTicketReleaseRate() {
@@ -68,7 +68,7 @@ public class Configuration {
 
     @Override
     public String toString() {
-        return "Configuration {" + "Total Tickets=" + totalTickets + ", Ticket Release Rate=" + ticketReleaseRate +
+        return "Configuration {" + "Total Tickets=" + totalTicket + ", Ticket Release Rate=" + ticketReleaseRate +
                 "ms" + ", Customer Retrieval Rate=" + customerRetrievalRate +
                 "ms" + ", Max Ticket Capacity=" + maximumTicketCapacity + '}';
     }

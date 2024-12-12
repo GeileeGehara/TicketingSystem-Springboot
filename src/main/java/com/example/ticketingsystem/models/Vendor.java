@@ -19,7 +19,7 @@ public class Vendor implements Runnable {
     public void run() {
         for (int i = 1; i <= totalTickets; i++) {
 
-            Ticket ticket = new Ticket(i, "Simple Event", new BigDecimal("100.00"));
+            Ticket ticket = new Ticket("Simple Event", new BigDecimal("100.00"));
             ticketPool.addTicket(ticket);
             System.out.println(Thread.currentThread().getName() + " added ticket: " + ticket);
 

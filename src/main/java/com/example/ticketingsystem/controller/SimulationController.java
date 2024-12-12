@@ -31,7 +31,7 @@ public class SimulationController {
 
     @PostMapping("/start")
     public ResponseEntity<String> startSimulation(@RequestBody TicketDTO DTO) {
-        configuration.setTotalTickets(DTO.getTotalTickets());
+        configuration.setTotalTicket(DTO.getTotalTicket());
         configuration.setTicketReleaseRate(DTO.getTicketReleaseRate());
         configuration.setCustomerRetrievalRate(DTO.getCustomerRetrievalRate());
         configuration.setMaximumTicketCapacity(DTO.getMaximumTicketCapacity());
@@ -53,8 +53,8 @@ public class SimulationController {
 
     private void startSimulationLoop(TicketPool ticketPool) {
         // Create vendor and customer threads based on configuration
-        Vendor vendor = new Vendor(configuration.getTotalTickets(), configuration.getTicketReleaseRate(), ticketPool);
-        Customer customer = new Customer(ticketPool, configuration.getCustomerRetrievalRate(), configuration.getTotalTickets());
+        Vendor vendor = new Vendor(configuration.getTotalTicket(), configuration.getTicketReleaseRate(), ticketPool);
+        Customer customer = new Customer(ticketPool, configuration.getCustomerRetrievalRate(), configuration.getTotalTicket());
 
         // Start the threads
         simulationThread = new Thread(vendor);

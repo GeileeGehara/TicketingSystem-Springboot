@@ -7,9 +7,7 @@ public class TicketDTO {
     private int maximumTicketCapacity;
 
 
-    public TicketDTO(){
-    }
-    public int getTotalTickets() {
+    public int getTotalTicket() {
         return totalTicket;
     }
 
