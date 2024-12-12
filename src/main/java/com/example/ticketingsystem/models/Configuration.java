@@ -10,6 +10,7 @@ public class Configuration {
     private int ticketReleaseRate = 2;
     private int customerRetrievalRate = 1;
     private int maximumTicketCapacity = 80;
+    private boolean running = false;
 
     public Configuration() {}
 
@@ -54,6 +55,15 @@ public class Configuration {
         this.maximumTicketCapacity = maximumTicketCapacity;
     }
 
+
+    public void stopSimulation() {
+        running = false;
+        // Signal simulation threads or processes to stop
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
 
 
     @Override

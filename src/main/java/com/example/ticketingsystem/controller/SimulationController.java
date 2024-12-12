@@ -2,7 +2,8 @@ package com.example.ticketingsystem.controller;
 
 import com.example.ticketingsystem.DTO.TicketDTO;
 import com.example.ticketingsystem.models.Configuration;
-import com.example.ticketingsystem.models.Ticket;
+import com.example.ticketingsystem.models.Customer;
+import com.example.ticketingsystem.models.Vendor;
 import com.example.ticketingsystem.service.TicketPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class SimulationController {
     private final TicketPool ticketPool;
     private final Configuration configuration;
+    private Thread simulationThread;
 
     @Autowired
     public SimulationController(TicketPool ticketPool, Configuration configuration) {
@@ -38,6 +40,7 @@ public class SimulationController {
             return ResponseEntity.badRequest().body("Max ticket capacity must be greater than 0");
         }
 
+        startSimulationLoop(ticketPool);
         return ResponseEntity.ok("Simulation started.");
     }
 
@@ -46,5 +49,18 @@ public class SimulationController {
         configuration.stopSimulation();
         System.out.println("Simulation stopped");
         return "Simulation stopped!";
+    }
+
+    private void startSimulationLoop(TicketPool ticketPool) {
+        // Create vendor and customer threads based on configuration
+        Vendor vendor = new Vendor(configuration.getTotalTickets(), configuration.getTicketReleaseRate(), ticketPool);
+        Customer customer = new Customer(ticketPool, configuration.getCustomerRetrievalRate(), configuration.getTotalTickets());
+
+        // Start the threads
+        simulationThread = new Thread(vendor);
+        simulationThread.start();
+
+        simulationThread = new Thread(customer);
+        simulationThread.start();
     }
 }

@@ -1,13 +1,15 @@
 package com.example.ticketingsystem.models;
 
+import com.example.ticketingsystem.service.TicketPool;
+
 import java.math.BigDecimal;
 
 public class Vendor implements Runnable {
-    private int totalTickets;
-    private int ticketReleaseRate;
-    private Configuration ticketPool;
+    private final int totalTickets;
+    private final int ticketReleaseRate;
+    private final TicketPool ticketPool;
 
-    public Vendor(int totalTickets, int ticketReleaseRate, Configuration ticketPool) {
+    public Vendor(int totalTickets, int ticketReleaseRate, TicketPool ticketPool) {
         this.totalTickets = totalTickets;
         this.ticketReleaseRate = ticketReleaseRate;
         this.ticketPool = ticketPool;
